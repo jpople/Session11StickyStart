@@ -56,8 +56,8 @@ namespace stickynotes.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,NoteTitle,NoteText,Order,PostTime")] Sticky sticky)
         {
-            sticky.PostTime = DateTime.Now;
             sticky.Order = sticky.Id;
+            sticky.PostTime = DateTime.Now;
             if (ModelState.IsValid)
             {
                 _context.Add(sticky);
