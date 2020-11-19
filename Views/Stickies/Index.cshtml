@@ -1,16 +1,17 @@
 @model IEnumerable<stickynotes.Models.Sticky>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Notes";
 }
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 
+<div class="container d-flex flex-wrap" id="note-board">
 @foreach (var item in Model)
 {
-    <div class="card" style="width: 18rem;">
+    <div class="card sticky" style="width:18rem">
         <div class="card-body">
             <h5 class="card-title">@Html.DisplayFor(modelItem => item.NoteTitle)</h5>
             <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.PostTime)</h6>
@@ -20,3 +21,4 @@
         </div>
     </div>
 }
+</div>
