@@ -20,3 +20,11 @@ Extra super bonus!
 * make the table in the db - 'migrate'
 * run it! make sure you can create stickies!
 * start making it look/work like you actually want it to.
+
+## Fancy extras
+* automatically set order and post time
+* make sticky notes look like sticky notes
+* create sticky notes on-page instead of redirecting
+    * use JS to post to the screen
+    * async push to DB
+* implement ordering???
