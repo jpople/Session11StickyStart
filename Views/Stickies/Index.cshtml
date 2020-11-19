@@ -7,15 +7,15 @@
 <div class="container d-flex flex-wrap">
     <div class="card sticky" style="width:18rem">
         <div class="card-body">
-            <form asp-action="Create">
+            <form id="NoteForm" asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label for="NoteTitle" class="control-label">Title</label>
-                    <input type="text" name="NoteTitle" class="form-control" />
+                    <input type="text" id="NoteTitle" name="NoteTitle" class="form-control" />
                 </div>
                 <div class="form-group">
                     <label for="NoteText" class="control-label">Text</label>
-                    <input type="text" name="NoteText" class="form-control"/>
+                    <input type="text" id="NoteText" name="NoteText" class="form-control"/>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary" />
@@ -36,3 +36,33 @@
     </div>
 }
 </div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        function submitFetch(){
+            var title = document.getElementById("NoteTitle").value;
+            var text = document.getElementById("NoteText").value;
+            var authToken = document.getElementById("NoteForm").__RequestVerificationToken.value;
+            console.log(authToken);
+
+            data = {NoteTitle:title, NoteText:text, __RequestVerificationToken:authToken};
+            url = "stickies/Create";
+            postData(url, data);
+        }
+        async function postData(url = '', data = {}) {
+            const response = await fetch(url, {
+                method: 'POST',
+                mode: 'cors',
+                cache: 'no-cache',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                redirect: 'follow',
+                referrerPolicy: 'no-referrer',
+                body: JSON.stringify(data)
+            });
+            return response.json();
+        }
+    </script>
+}
