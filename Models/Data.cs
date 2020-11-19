@@ -10,6 +10,7 @@ namespace stickynotes.Data {
             : base(options)
         {
         }
+        public DbSet<stickynotes.Models.Sticky> Sticky { get; set; }
 
         // create a model, then insert a dbset here that matches it.
         // public DbSet<Movie> Movie { get; set; }
